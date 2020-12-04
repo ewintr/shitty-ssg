@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+{{- template "head" . -}}
+<body>
+{{- template "menu" -}}
+  <main>
+    <article>
+      <h1>{{ .Title }}</h1>
+      <time datetime="{{ .DateShort }}">{{ .DateLong }}</time>
+      {{ .Content }}
+    </article>
+  </main>
+</body>
+</html>

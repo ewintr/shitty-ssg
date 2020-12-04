@@ -1,0 +1,56 @@
+{{ define "head" }}
+  <head>
+    <title>{{ .Title }} - ErikWinter.nl</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=10,user-scalable=yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="HandheldFriendly" content="true" />
+    <link rel="alternate" type="application/rss+xml" title="ErikWinter.nl" href="https://erikwinter.nl/index.xml" />
+    <style type="text/css">
+@font-face { font-family: AmikoBold; src: url('/font/Amiko-Bold.ttf'); font-display: swap; }
+@font-face { font-family: AmikoRegular; src: url('/font/Amiko-Regular.ttf'); font-display: swap; }
+@font-face { font-family: AmikoSemiBold; src: url('/font/Amiko-SemiBold.ttf'); font-display: swap; }
+@font-face { font-family: MerriWeatherRegular; src: url('/font/merriweather.regular.ttf'); font-display: swap; }
+html { font-size: 18px; }
+body { display: flex; flex-direction: column; max-width: 1000px; margin: auto; font-family: AmikoRegular; color: black; }
+a { text-decoration: none; color: black; }
+a:hover h2 { text-decoration: underline; }
+code { line-height: 1.5rem; }
+ul, li { margin: 0; padding: 0; }
+li { list-style-type: none; }
+#mainMenu { display: flex; width: 100%; justify-content: center; flex-wrap: wrap; border-bottom: 1px solid grey; font-family: AmikoSemiBold; }
+#mainMenu ul { display: inline; margin: 0; padding: 15px 10px; }
+#mainMenu li { display: inline; }
+#mainMenu a { font-size: 1.4rem; text-align: center; margin: 0 20px; color: black; text-decoration: none; }
+main { margin: 30px auto; width: 80%; }
+main li { margin: 35px 20px;; }
+main li h2 { display: inline; margin-right: 10px; margin-bottom: 1px; font-size: 1.4rem; }
+main li .language { margin-right: 10px; font-size: 1.2rem; }
+main li time { color: grey; }
+main li p { margin-top: 10px; font-style: normal; color: black; text-decoration: none; }
+main nav { margin: 0px 20px; }
+main nav ul { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-content: center; margin: 30px 0px 0px 30px; }
+/*main nav.tagList ul { justify-content: space-between; }*/
+main nav li { display: inline; margin: 0; width: 140px; }
+main nav li a { font-family: AmikoBold; margin: 1px 2px; color: black; }
+main nav h2 { font-size: 1.4rem; }
+main nav p { color: black; }
+article { margin: auto; }
+p, main article li { font-family: MerriWeatherRegular; line-height: 140%; }
+article time, .tags, .tags a { font-family: AmikoRegular; color: grey; }
+.tags, .tags li { display: inline; margin: 0; padding-left: 3px; }
+p img { display: block; margin: 10px auto; }
+#rss-feeds ~ p img { display: inline; margin: 0 3px 0 0; vertical-align: -0.6rem; }
+h1 { font-size: 1.8rem; }
+p a, article li a { font-weight: bold; font-family: AmikoBold }
+article li { list-style-type: disc; margin: 5px 0 0 20px; }
+article h2, nav h2 { margin-top: 40px; }
+.greybox-dark, .greybox-light { margin-bottom: 30px; padding: 10px 30px; }
+.greybox-dark { border-top: 1px solid grey; border-bottom: 1px solid grey; background-color: whitesmoke; }
+.greybox-dark h2, .greybox-light h2 { margin: 0; text-align: center; }
+audio { width: 100%; }
+pre, code { background-color: whitesmoke; }
+pre { width: auto; overflow: auto; }
+    </style>
+    <script data-goatcounter="https://erikwinter.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  </head>
+{{ end }}

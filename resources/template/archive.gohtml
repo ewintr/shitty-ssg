@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+{{- template "head" . -}}
+<body>
+{{- template "menu" -}}
+  <main>
+    <nav class="tagList">
+    <h2>Tags</h2>
+    <p>These can refer to both articles and development notes. Well, technically they could refer to short stories too, but I have not yet felt the need to include Docker or Kubernetes in my fiction. It's a safe space, after all.</p>
+    <ul>
+    {{- range .Tags -}}
+      <li><a href="{{ .Link }}">#{{ .Name }}</a></li>
+    {{- end -}}
+    </ul>
+    </nav>
+    <nav>
+    <h2>Articles</h2>
+    <p>Tutorials, essays, thoughts... or just ramblings from someone who thinks too much about computers and minimalism.</p>
+    <ul>
+    {{- range .ArticleYears -}}
+      <li><a href="{{ .Link }}">{{ .Name }}</a></li>
+    {{- end -}}
+    </ul>
+    </nav>
+    <nav>
+    <h2>Development Notes</h2>
+    <p>Programming and other computer related tricks, links and snippets that I'd like to have quick access to. Basically, whenever I Google and all the top links are purple, indicating that I have searched the same thing before, I turn it into a note.</p>
+    <ul>
+    {{- range .NoteYears -}}
+      <li><a href="{{ .Link }}">{{ .Name }}</a></li>
+    {{- end -}}
+    </ul>
+    </nav>
+    <nav>
+    <h2>Short Stories &#127475;&#127473;</h2>
+    <p>Over the course of years, I wrote a lot of short stories in a format that I called <em>Vrij Korte Verhalen</em>, VKV's for short, which could be translated as Rather Short Stories. Most of them are between 500 and 1000 words and all of them in Dutch.</p>
+    <ul>
+    {{- range .StoryYears -}}
+      <li><a href="{{ .Link }}">{{ .Name}}</a></li>
+    {{- end -}}
+    </ul>
+  </main>
+</body>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+{{- template "head" . -}}
+<body>
+{{- template "menu" -}}
+  <main>
+  <ul>
+{{- range .Summaries -}}
+<li>
+  <a href="{{ .Link }}">
+    <h2>{{ .Title }}</h2> 
+    {{- if eq .Language "nl" -}}
+    <span class="language">&#127475;&#127473;</span>
+    {{- end -}}
+    <time datetime="{{ .DateShort }}">{{ .DateLong }}</time>
+    {{- .Summary -}}
+	</a>
+</li>
+{{- end -}}
+  </ul>
+  </main>
+</body>
+</html>
