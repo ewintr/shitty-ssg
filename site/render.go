@@ -33,7 +33,7 @@ func moveResources(targetPath, resourcesPath string) error {
 	return nil
 }
 
-func renderStaticPages(targetPath string, statics []*StaticPage) error {
+func renderStaticPages(targetPath string, tpl *template.Template, statics []*StaticPage) error {
 	for _, static := range statics {
 		destPath := filepath.Join(targetPath, static.Name)
 		if err := os.MkdirAll(destPath, dirMode); err != nil {
@@ -45,16 +45,23 @@ func renderStaticPages(targetPath string, statics []*StaticPage) error {
 		}
 		defer pageFile.Close()
 
-		data := struct {
-			Title string
-		}{
-			Title: strings.Title(static.Name),
-		}
-		if err := static.Template.Execute(pageFile, data); err != nil {
+		mainHTML, err := ioutil.ReadFile(filepath.Join(static.Path, "main.html"))
+		if err != nil {
 			return err
 		}
 
-		if err := copyFiles(filepath.Join(static.SourcePath, "*"), destPath); err != nil {
+		data := struct {
+			Title string
+			Main  string
+		}{
+			Title: strings.Title(static.Name),
+			Main:  string(mainHTML),
+		}
+		if err := tpl.Execute(pageFile, data); err != nil {
+			return err
+		}
+
+		if err := copyFiles(filepath.Join(static.Path, "resources", "*"), destPath); err != nil {
 			return err
 		}
 	}

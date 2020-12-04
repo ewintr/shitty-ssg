@@ -8,9 +8,8 @@ import (
 )
 
 type StaticPage struct {
-	Name       string
-	Template   *template.Template
-	SourcePath string
+	Name string
+	Path string
 }
 
 type Site struct {
@@ -26,21 +25,19 @@ func New(resourcesPath string) (*Site, error) {
 		return &Site{}, err
 	}
 
-	staticPages := []*StaticPage{}
-	for _, stName := range []string{"other", "about"} {
-		staticPages = append(staticPages, &StaticPage{
-			Name:       stName,
-			Template:   templates[stName],
-			SourcePath: filepath.Join(resourcesPath, stName),
-		})
-	}
-
 	return &Site{
 		resourcesPath: resourcesPath,
 		templates:     templates,
 		posts:         []Post{},
-		staticPages:   staticPages,
+		staticPages:   []*StaticPage{},
 	}, nil
+}
+
+func (s *Site) AddStaticPage(staticPath string) {
+	s.staticPages = append(s.staticPages, &StaticPage{
+		Name: filepath.Base(staticPath),
+		Path: staticPath,
+	})
 }
 
 func (s *Site) AddFilePost(fPath string) error {
@@ -67,7 +64,7 @@ func (s *Site) RenderHTML(targetPath string) error {
 	if err := moveResources(targetPath, s.resourcesPath); err != nil {
 		return err
 	}
-	if err := renderStaticPages(targetPath, s.staticPages); err != nil {
+	if err := renderStaticPages(targetPath, s.templates["static"], s.staticPages); err != nil {
 		return err
 	}
 
@@ -96,7 +93,7 @@ func (s *Site) RenderHTML(targetPath string) error {
 func parseTemplates(resourcesPath string) (map[string]*template.Template, error) {
 	templates := map[string]*template.Template{}
 	tPath := filepath.Join(resourcesPath, "template")
-	for _, tName := range []string{"post", "list", "archive", "other", "about"} {
+	for _, tName := range []string{"post", "list", "archive", "static"} {
 		var tFiles []string
 		for _, tf := range []string{tName, "head", "menu"} {
 			tFiles = append(tFiles, filepath.Join(tPath, fmt.Sprintf("%s.gohtml", tf)))
