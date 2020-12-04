@@ -2,7 +2,7 @@
 Erik Winter
 2020-11-09
 :kind: article
-:tags: golang, productivity, asciidoc
+:tags: productivity, asciidoc, hugo
 :language: EN
 :project: shitty-ssg
 
