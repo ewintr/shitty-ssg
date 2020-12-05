@@ -40,7 +40,7 @@ func (p *Post) Link() string {
 }
 
 func (p *Post) FullLink() string {
-	return fmt.Sprintf("https://erikwinter.nl/%s", p.Link())
+	return fmt.Sprintf("https://erikwinter.nl%s", p.Link())
 }
 
 func (p *Post) HTMLSummary() *HTMLSummary {
