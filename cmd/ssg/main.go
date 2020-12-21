@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"git.sr.ht/~ewintr/shitty-ssg/site"
+	"git.sr.ht/~ewintr/shitty-ssg/cmd/ssg/site"
 )
 
 var (

@@ -1,5 +1,8 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 cloud.google.com/go v0.34.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
+git.sr.ht/~ewintr/erikwinternl v0.0.0-20201204092507-5528bf33815d h1:teNzxpdrJw5sUpB/84ojdjVV2q2+3IVwYjztCze9YmU=
+git.sr.ht/~ewintr/erikwinternl/shitty-ssg v0.0.0-20201204092507-5528bf33815d h1:vyJ0Pgdrvqh28jxBCLGCGt/80p86iSQtKJW7rAbYRk8=
+git.sr.ht/~ewintr/erikwinternl/shitty-ssg v0.0.0-20201204092507-5528bf33815d/go.mod h1:ka/PzT9A0BNvjcUQpIM0YE1BnOR1/qr6x7XeCUyYDlw=
 git.sr.ht/~ewintr/go-kit v0.0.0-20200704112030-36275689b0ea h1:YdHan+/QwjzF05Dlp40BHw5N47nWy2QZCY7aseXf2n0=
 git.sr.ht/~ewintr/go-kit v0.0.0-20200704112030-36275689b0ea/go.mod h1:zrpigRr1EHuVGw7GWwvYWwfLgdAwJ110zIRAGtaicvI=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=

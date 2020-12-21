@@ -1,4 +1,4 @@
-package site
+package adoc
 
 import (
 	"strings"
@@ -6,19 +6,18 @@ import (
 )
 
 const (
-	TITLE_PREFIX           = "= "
-	SUBTITLE_PREFIX        = "== "
-	SUBSUBTITLE_PREFIX     = "=== "
-	PARAGRAPH_SEPARATOR    = "\n\n"
-	LINE_SEPARATOR         = "\n"
-	CODE_PREFIX            = "----\n"
-	CODE_SUFFIX            = "\n----"
-	LISTITEM_PREFIX        = "* "
-	PARAGRAPH_CONTINUATION = "\n+\n"
+	TITLE_PREFIX        = "= "
+	SUBTITLE_PREFIX     = "== "
+	SUBSUBTITLE_PREFIX  = "=== "
+	PARAGRAPH_SEPARATOR = "\n\n"
+	LINE_SEPARATOR      = "\n"
+	CODE_PREFIX         = "----\n"
+	CODE_SUFFIX         = "\n----"
+	LISTITEM_PREFIX     = "* "
 )
 
-func NewPost(text string) Post {
-	post := Post{
+func New(text string) *ADoc {
+	doc := &ADoc{
 		Language: LANGUAGE_EN,
 		Tags:     []Tag{},
 	}
@@ -27,6 +26,7 @@ func NewPost(text string) Post {
 	var pars []string
 	for _, s := range strings.Split(text, PARAGRAPH_SEPARATOR) {
 		if s == "" {
+
 			continue
 		}
 
@@ -60,7 +60,7 @@ func NewPost(text string) Post {
 	for i, p := range blocks {
 		switch {
 		case i == 0 && strings.HasPrefix(p, TITLE_PREFIX):
-			ParseHeader(p, &post)
+			ParseHeader(p, doc)
 		case strings.HasPrefix(p, SUBTITLE_PREFIX):
 			p = strings.TrimSpace(p)
 			s := strings.Split(p, SUBTITLE_PREFIX)
@@ -68,7 +68,7 @@ func NewPost(text string) Post {
 
 				continue
 			}
-			post.Content = append(post.Content, SubTitle(s[1]))
+			doc.Content = append(doc.Content, SubTitle(s[1]))
 		case strings.HasPrefix(p, SUBSUBTITLE_PREFIX):
 			p = strings.TrimSpace(p)
 			s := strings.Split(p, SUBSUBTITLE_PREFIX)
@@ -76,9 +76,9 @@ func NewPost(text string) Post {
 
 				continue
 			}
-			post.Content = append(post.Content, SubSubTitle(s[1]))
+			doc.Content = append(doc.Content, SubSubTitle(s[1]))
 		case isCodeBlock(p):
-			post.Content = append(post.Content, parseCodeBlock(p))
+			doc.Content = append(doc.Content, parseCodeBlock(p))
 		case strings.HasPrefix(p, LISTITEM_PREFIX):
 			p = strings.TrimSpace(p)
 			var items []ListItem
@@ -88,15 +88,15 @@ func NewPost(text string) Post {
 					items = append(items, ListItem(inline))
 				}
 			}
-			post.Content = append(post.Content, List(items))
+			doc.Content = append(doc.Content, List(items))
 
 		default:
 			p = strings.TrimSpace(p)
-			post.Content = append(post.Content, Paragraph(ParseInline(p)))
+			doc.Content = append(doc.Content, Paragraph(ParseInline(p)))
 		}
 	}
 
-	return post
+	return doc
 }
 
 func isCodeBlock(par string) bool {
@@ -111,31 +111,31 @@ func parseCodeBlock(par string) CodeBlock {
 	return CodeBlock(content)
 }
 
-func ParseHeader(text string, post *Post) {
+func ParseHeader(text string, doc *ADoc) {
 	text = strings.TrimSpace(text)
 	lines := strings.Split(text, LINE_SEPARATOR)
 	for i, l := range lines {
 		switch {
 		case i == 0:
 			s := strings.Split(l, TITLE_PREFIX)
-			post.Title = s[1]
+			doc.Title = s[1]
 		case isDate(l):
 			date, _ := time.Parse("2006-01-02", l)
-			post.Date = date
+			doc.Date = date
 		case strings.HasPrefix(l, ":kind:"):
 			s := strings.Split(l, ":")
-			post.Kind = NewKind(strings.TrimSpace(s[2]))
+			doc.Kind = NewKind(strings.TrimSpace(s[2]))
 		case strings.HasPrefix(l, ":language:"):
 			s := strings.Split(l, ":")
-			post.Language = NewLanguage(strings.TrimSpace(s[2]))
+			doc.Language = NewLanguage(strings.TrimSpace(s[2]))
 		case strings.HasPrefix(l, ":tags:"):
 			s := strings.Split(l, ":")
 			t := strings.Split(s[2], ",")
 			for _, tag := range t {
-				post.Tags = append(post.Tags, Tag(strings.TrimSpace(tag)))
+				doc.Tags = append(doc.Tags, Tag(strings.TrimSpace(tag)))
 			}
 		default:
-			post.Author = l
+			doc.Author = l
 		}
 	}
 }

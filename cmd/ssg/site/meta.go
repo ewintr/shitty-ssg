@@ -1,5 +1,9 @@
 package site
 
+import (
+	"git.sr.ht/~ewintr/shitty-ssg/pkg/adoc"
+)
+
 const (
 	KIND_NOTE    = Kind("note")
 	KIND_STORY   = Kind("story")
@@ -9,19 +13,15 @@ const (
 
 type Kind string
 
-var pluralKind = map[Kind]string{
-	KIND_NOTE:    "notes",
-	KIND_STORY:   "stories",
-	KIND_ARTICLE: "articles",
-}
-
-func NewKind(kind string) Kind {
+func NewKind(kind adoc.Kind) Kind {
 	switch kind {
-	case "note":
+	case adoc.KIND_NOTE:
 		return KIND_NOTE
-	case "story":
+	case adoc.KIND_VKV:
 		return KIND_STORY
-	case "article":
+	case adoc.KIND_ESSAY:
+		fallthrough
+	case adoc.KIND_TUTORIAL:
 		return KIND_ARTICLE
 	default:
 		return KIND_INVALID
@@ -37,11 +37,11 @@ const (
 
 type Language string
 
-func NewLanguage(text string) Language {
-	switch text {
-	case "nl":
+func NewLanguage(ln adoc.Language) Language {
+	switch ln {
+	case adoc.LANGUAGE_NL:
 		return LANGUAGE_NL
-	case "en":
+	case adoc.LANGUAGE_EN:
 		fallthrough
 	default:
 		return LANGUAGE_EN

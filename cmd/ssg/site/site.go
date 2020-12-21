@@ -5,6 +5,8 @@ import (
 	"io/ioutil"
 	"path/filepath"
 	"text/template"
+
+	"git.sr.ht/~ewintr/shitty-ssg/pkg/adoc"
 )
 
 type StaticPage struct {
@@ -28,7 +30,7 @@ func New(resourcesPath string) (*Site, error) {
 	return &Site{
 		resourcesPath: resourcesPath,
 		templates:     templates,
-		posts:         []Post{},
+		posts:         Posts{},
 		staticPages:   []*StaticPage{},
 	}, nil
 }
@@ -45,7 +47,10 @@ func (s *Site) AddFilePost(fPath string) error {
 	if err != nil {
 		return err
 	}
-	s.posts = append(s.posts, NewPost(string(content)))
+	post := NewPost(adoc.New(string(content)))
+	if post.Kind != KIND_INVALID {
+		s.posts = append(s.posts, post)
+	}
 
 	return nil
 }

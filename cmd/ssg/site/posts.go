@@ -2,12 +2,13 @@ package site
 
 import "sort"
 
-type Posts []Post
+type Posts []*Post
 
 func (p Posts) Len() int           { return len(p) }
 func (p Posts) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }
 func (p Posts) Less(i, j int) bool { return p[i].Date.After(p[j].Date) }
 
+// Sort sorts on reverse chronological order
 func (p Posts) Sort() Posts {
 	sort.Sort(p)
 
@@ -84,15 +85,6 @@ func (p Posts) TagList() []string {
 	sort.Strings(list)
 
 	return list
-}
-
-func (p Posts) HTMLSummaries() []*HTMLSummary {
-	summaries := []*HTMLSummary{}
-	for _, post := range p {
-		summaries = append(summaries, post.HTMLSummary())
-	}
-
-	return summaries
 }
 
 func removeDuplicates(fullList []string) []string {

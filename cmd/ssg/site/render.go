@@ -69,12 +69,16 @@ func renderStaticPages(targetPath string, tpl *template.Template, statics []*Sta
 }
 
 func renderHome(targetPath string, tpl *template.Template, posts Posts) error {
+	var summaries []*HTMLSummary
+	for _, p := range posts {
+		summaries = append(summaries, p.HTMLSummary())
+	}
 	data := struct {
 		Title     string
 		Summaries []*HTMLSummary
 	}{
 		Title:     "Recent",
-		Summaries: posts.HTMLSummaries(),
+		Summaries: summaries,
 	}
 
 	hPath := filepath.Join(targetPath, "index.html")
@@ -145,7 +149,11 @@ func renderListings(targetPath string, tpl *template.Template, posts Posts) erro
 	for _, kind := range []Kind{KIND_NOTE, KIND_STORY, KIND_ARTICLE} {
 		for _, year := range posts.FilterByKind(kind).YearList() {
 			title := fmt.Sprintf("%s in %s", strings.Title(pluralKind[kind]), year)
-			summaries := posts.FilterByKind(kind).FilterByYear(year).HTMLSummaries()
+			kyposts := posts.FilterByKind(kind).FilterByYear(year)
+			var summaries []*HTMLSummary
+			for _, p := range kyposts {
+				summaries = append(summaries, p.HTMLSummary())
+			}
 			path := filepath.Join(targetPath, pluralKind[kind], year)
 			if err := renderListing(path, tpl, title, summaries); err != nil {
 				return err
@@ -155,7 +163,11 @@ func renderListings(targetPath string, tpl *template.Template, posts Posts) erro
 
 	for _, tag := range posts.TagList() {
 		title := fmt.Sprintf("Posts Tagged with \"%s\"", tag)
-		summaries := posts.FilterByTag(Tag(tag)).HTMLSummaries()
+		tposts := posts.FilterByTag(Tag(tag))
+		var summaries []*HTMLSummary
+		for _, p := range tposts {
+			summaries = append(summaries, p.HTMLSummary())
+		}
 		path := filepath.Join(targetPath, "tags", tag)
 		if err := renderListing(path, tpl, title, summaries); err != nil {
 			return err
