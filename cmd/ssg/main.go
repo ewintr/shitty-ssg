@@ -25,7 +25,11 @@ func main() {
 	}
 
 	// initialize site
-	s, err := site.New(*resources)
+	config, err := site.NewSiteConfig(site.SITE_EWNL)
+	if err != nil {
+		log.Fatal(err)
+	}
+	s, err := site.New(config, *resources)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -13,24 +13,6 @@ const (
 
 type Kind string
 
-func NewKind(kind adoc.Kind) Kind {
-	switch kind {
-	case adoc.KIND_NOTE:
-		return KIND_NOTE
-	case adoc.KIND_VKV:
-		return KIND_STORY
-	case adoc.KIND_ESSAY:
-		fallthrough
-	case adoc.KIND_ARTICLE:
-		fallthrough
-	case adoc.KIND_TUTORIAL:
-		return KIND_ARTICLE
-	default:
-		return KIND_INVALID
-	}
-
-}
-
 const (
 	LANGUAGE_EN      = Language("en")
 	LANGUAGE_NL      = Language("nl")

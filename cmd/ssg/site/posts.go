@@ -15,7 +15,7 @@ func (p Posts) Sort() Posts {
 	return p
 }
 
-func (p Posts) FilterByKind(wanted Kind) Posts {
+func (p Posts) SelectKind(wanted Kind) Posts {
 	pList := Posts{}
 	for _, post := range p {
 		if post.Kind == wanted {
@@ -26,7 +26,7 @@ func (p Posts) FilterByKind(wanted Kind) Posts {
 	return pList
 }
 
-func (p Posts) FilterByYear(year string) Posts {
+func (p Posts) SelectYear(year string) Posts {
 	pList := Posts{}
 	for _, post := range p {
 		if post.Year() == year {
@@ -37,7 +37,7 @@ func (p Posts) FilterByYear(year string) Posts {
 	return pList
 }
 
-func (p Posts) FilterByTag(wanted Tag) Posts {
+func (p Posts) SelectTag(wanted Tag) Posts {
 	pList := Posts{}
 
 POSTS:
@@ -49,6 +49,18 @@ POSTS:
 				continue POSTS
 			}
 		}
+	}
+
+	return pList
+}
+
+func (p Posts) RemoveKind(kind Kind) Posts {
+	pList := Posts{}
+	for _, post := range p {
+		if post.Kind == kind {
+			continue
+		}
+		pList = append(pList, post)
 	}
 
 	return pList

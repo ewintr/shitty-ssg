@@ -8,53 +8,6 @@ import (
 	"git.sr.ht/~ewintr/shitty-ssg/pkg/adoc"
 )
 
-func TestNewKind(t *testing.T) {
-	for _, tc := range []struct {
-		name  string
-		input adoc.Kind
-		exp   site.Kind
-	}{
-		{
-			name: "empty",
-			exp:  site.KIND_INVALID,
-		},
-		{
-			name:  "note",
-			input: adoc.KIND_NOTE,
-			exp:   site.KIND_NOTE,
-		},
-		{
-			name:  "work",
-			input: adoc.KIND_WORK,
-			exp:   site.KIND_INVALID,
-		},
-		{
-			name:  "vkv",
-			input: adoc.KIND_VKV,
-			exp:   site.KIND_STORY,
-		},
-		{
-			name:  "essay",
-			input: adoc.KIND_ESSAY,
-			exp:   site.KIND_ARTICLE,
-		},
-		{
-			name:  "article",
-			input: adoc.KIND_ARTICLE,
-			exp:   site.KIND_ARTICLE,
-		},
-		{
-			name:  "tutorial",
-			input: adoc.KIND_TUTORIAL,
-			exp:   site.KIND_ARTICLE,
-		},
-	} {
-		t.Run(tc.name, func(t *testing.T) {
-			test.Equals(t, tc.exp, site.NewKind(tc.input))
-		})
-	}
-}
-
 func TestNewLanguage(t *testing.T) {
 	for _, tc := range []struct {
 		name  string

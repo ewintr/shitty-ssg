@@ -31,7 +31,7 @@ type Post struct {
 	Tags     []Tag
 }
 
-func NewPost(doc *adoc.ADoc) *Post {
+func NewPost(config *SiteConfig, doc *adoc.ADoc) *Post {
 	var tags []Tag
 	for _, t := range doc.Tags {
 		tags = append(tags, Tag(t))
@@ -39,7 +39,7 @@ func NewPost(doc *adoc.ADoc) *Post {
 	return &Post{
 		doc:      doc,
 		Date:     doc.Date,
-		Kind:     NewKind(doc.Kind),
+		Kind:     config.MapKind(doc.Kind),
 		Language: Language(doc.Language),
 		Tags:     tags,
 	}

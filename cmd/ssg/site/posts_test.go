@@ -51,16 +51,20 @@ func TestPosts(t *testing.T) {
 
 	posts := site.Posts{post1, post2, post3}
 
-	t.Run("filter kind", func(t *testing.T) {
-		test.Equals(t, site.Posts{post1, post3}, posts.FilterByKind(kind1))
+	t.Run("select kind", func(t *testing.T) {
+		test.Equals(t, site.Posts{post1, post3}, posts.SelectKind(kind1))
 	})
 
-	t.Run("filter year", func(t *testing.T) {
-		test.Equals(t, site.Posts{post2}, posts.FilterByYear("2019"))
+	t.Run("select year", func(t *testing.T) {
+		test.Equals(t, site.Posts{post2}, posts.SelectYear("2019"))
 	})
 
-	t.Run("tilter tag", func(t *testing.T) {
-		test.Equals(t, site.Posts{post2, post3}, posts.FilterByTag(tag2))
+	t.Run("select tag", func(t *testing.T) {
+		test.Equals(t, site.Posts{post2, post3}, posts.SelectTag(tag2))
+	})
+
+	t.Run("remove kind", func(t *testing.T) {
+		test.Equals(t, site.Posts{post2}, posts.RemoveKind(kind1))
 	})
 
 	t.Run("limit", func(t *testing.T) {

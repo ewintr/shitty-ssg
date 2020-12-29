@@ -33,7 +33,7 @@ func moveResources(targetPath, resourcesPath string) error {
 	return nil
 }
 
-func renderStaticPages(targetPath string, tpl *template.Template, statics []*StaticPage) error {
+func renderStaticPages(targetPath string, tpl *template.Template, _ Posts, statics []*StaticPage) error {
 	for _, static := range statics {
 		destPath := filepath.Join(targetPath, static.Name)
 		if err := os.MkdirAll(destPath, dirMode); err != nil {
@@ -68,9 +68,9 @@ func renderStaticPages(targetPath string, tpl *template.Template, statics []*Sta
 	return nil
 }
 
-func renderHome(targetPath string, tpl *template.Template, posts Posts) error {
+func renderHome(targetPath string, tpl *template.Template, posts Posts, _ []*StaticPage) error {
 	var summaries []*HTMLSummary
-	for _, p := range posts {
+	for _, p := range posts.RemoveKind(KIND_NOTE).Limit(10) {
 		summaries = append(summaries, p.HTMLSummary())
 	}
 	data := struct {
@@ -91,7 +91,7 @@ func renderHome(targetPath string, tpl *template.Template, posts Posts) error {
 	return tpl.Execute(homeFile, data)
 }
 
-func renderArchive(targetPath string, tpl *template.Template, title string, posts Posts) error {
+func renderArchive(targetPath string, tpl *template.Template, posts Posts, _ []*StaticPage) error {
 	archPath := filepath.Join(targetPath, "archive")
 	if err := os.MkdirAll(archPath, dirMode); err != nil {
 		return err
@@ -120,7 +120,7 @@ func renderArchive(targetPath string, tpl *template.Template, title string, post
 		KIND_STORY:   {},
 	}
 	for kind := range yearLinks {
-		for _, year := range posts.FilterByKind(kind).YearList() {
+		for _, year := range posts.SelectKind(kind).YearList() {
 			yearLinks[kind] = append(yearLinks[kind], link{
 				Name: year,
 				Link: fmt.Sprintf("%s/", path.Join("/", pluralKind[kind], year)),
@@ -135,7 +135,7 @@ func renderArchive(targetPath string, tpl *template.Template, title string, post
 		NoteYears    []link
 		StoryYears   []link
 	}{
-		Title:        title,
+		Title:        "Archive",
 		Tags:         tags,
 		ArticleYears: yearLinks[KIND_ARTICLE],
 		NoteYears:    yearLinks[KIND_NOTE],
@@ -145,11 +145,11 @@ func renderArchive(targetPath string, tpl *template.Template, title string, post
 	return tpl.Execute(archFile, data)
 }
 
-func renderListings(targetPath string, tpl *template.Template, posts Posts) error {
+func renderListings(targetPath string, tpl *template.Template, posts Posts, _ []*StaticPage) error {
 	for _, kind := range []Kind{KIND_NOTE, KIND_STORY, KIND_ARTICLE} {
-		for _, year := range posts.FilterByKind(kind).YearList() {
+		for _, year := range posts.SelectKind(kind).YearList() {
 			title := fmt.Sprintf("%s in %s", strings.Title(pluralKind[kind]), year)
-			kyposts := posts.FilterByKind(kind).FilterByYear(year)
+			kyposts := posts.SelectKind(kind).SelectYear(year)
 			var summaries []*HTMLSummary
 			for _, p := range kyposts {
 				summaries = append(summaries, p.HTMLSummary())
@@ -163,7 +163,7 @@ func renderListings(targetPath string, tpl *template.Template, posts Posts) erro
 
 	for _, tag := range posts.TagList() {
 		title := fmt.Sprintf("Posts Tagged with \"%s\"", tag)
-		tposts := posts.FilterByTag(Tag(tag))
+		tposts := posts.SelectTag(Tag(tag))
 		var summaries []*HTMLSummary
 		for _, p := range tposts {
 			summaries = append(summaries, p.HTMLSummary())
@@ -198,7 +198,7 @@ func renderListing(path string, tpl *template.Template, title string, summaries 
 	return tpl.Execute(f, data)
 }
 
-func renderPosts(targetPath string, tpl *template.Template, posts Posts) error {
+func renderPosts(targetPath string, tpl *template.Template, posts Posts, _ []*StaticPage) error {
 	for _, post := range posts {
 		data := post.HTMLPost()
 		if data.Slug == "" {
@@ -225,7 +225,7 @@ func renderPosts(targetPath string, tpl *template.Template, posts Posts) error {
 	return nil
 }
 
-func renderRSS(targetPath string, tpl *template.Template, posts Posts) error {
+func renderRSS(targetPath string, tpl *template.Template, posts Posts, _ []*StaticPage) error {
 	rssPath := filepath.Join(targetPath, "index.xml")
 	rssFile, err := os.Create(rssPath)
 	if err != nil {

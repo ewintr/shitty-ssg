@@ -1,10 +1,8 @@
 package site
 
 import (
-	"fmt"
 	"io/ioutil"
 	"path/filepath"
-	"text/template"
 
 	"git.sr.ht/~ewintr/shitty-ssg/pkg/adoc"
 )
@@ -16,20 +14,19 @@ type StaticPage struct {
 
 type Site struct {
 	resourcesPath string
-	templates     map[string]*template.Template
+	config        *SiteConfig
 	posts         Posts
 	staticPages   []*StaticPage
 }
 
-func New(resourcesPath string) (*Site, error) {
-	templates, err := parseTemplates(resourcesPath)
-	if err != nil {
+func New(config *SiteConfig, resourcesPath string) (*Site, error) {
+	if err := config.ParseTemplates(filepath.Join(resourcesPath, "template")); err != nil {
 		return &Site{}, err
 	}
 
 	return &Site{
 		resourcesPath: resourcesPath,
-		templates:     templates,
+		config:        config,
 		posts:         Posts{},
 		staticPages:   []*StaticPage{},
 	}, nil
@@ -47,7 +44,7 @@ func (s *Site) AddFilePost(fPath string) error {
 	if err != nil {
 		return err
 	}
-	post := NewPost(adoc.New(string(content)))
+	post := NewPost(s.config, adoc.New(string(content)))
 	if post.Kind != KIND_INVALID {
 		s.posts = append(s.posts, post)
 	}
@@ -64,52 +61,12 @@ func (s *Site) RenderHTML(targetPath string) error {
 	if err := moveResources(targetPath, s.resourcesPath); err != nil {
 		return err
 	}
-	if err := renderStaticPages(targetPath, s.templates["static"], s.staticPages); err != nil {
-		return err
+
+	for _, tplConf := range s.config.TemplateConfigs {
+		if err := tplConf.Render(targetPath, tplConf.Template, posts, s.staticPages); err != nil {
+			return err
+		}
 	}
 
-	if err := renderArchive(targetPath, s.templates["archive"], "Archive", posts); err != nil {
-		return err
-	}
-
-	if err := renderHome(targetPath, s.templates["list"], posts.Limit(10)); err != nil {
-		return err
-	}
-
-	if err := renderListings(targetPath, s.templates["list"], posts); err != nil {
-		return err
-	}
-
-	if err := renderPosts(targetPath, s.templates["post"], posts); err != nil {
-		return err
-	}
-
-	if err := renderRSS(targetPath, s.templates["rss"], posts); err != nil {
-		return err
-	}
 	return nil
-}
-
-func parseTemplates(resourcesPath string) (map[string]*template.Template, error) {
-	templates := map[string]*template.Template{}
-	tPath := filepath.Join(resourcesPath, "template")
-	for _, tName := range []string{"post", "list", "archive", "static"} {
-		var tFiles []string
-		for _, tf := range []string{tName, "head", "menu"} {
-			tFiles = append(tFiles, filepath.Join(tPath, fmt.Sprintf("%s.gohtml", tf)))
-		}
-		tpl, err := template.ParseFiles(tFiles...)
-		if err != nil {
-			return map[string]*template.Template{}, err
-		}
-		templates[tName] = tpl
-	}
-
-	rss, err := template.ParseFiles(filepath.Join(tPath, "rss.goxml"))
-	if err != nil {
-		return map[string]*template.Template{}, err
-	}
-	templates["rss"] = rss
-
-	return templates, nil
 }

@@ -10,19 +10,25 @@ import (
 )
 
 func TestPost(t *testing.T) {
+	docKind := adoc.KIND_NOTE
+	siteKind := site.Kind(docKind)
+	config := &site.SiteConfig{
+		KindMap: map[adoc.Kind]site.Kind{
+			docKind: siteKind,
+		},
+	}
 	title := "title thing"
 	author := "author"
-	kind := adoc.KIND_NOTE
 	language := adoc.LANGUAGE_EN
 	path := "/path"
 	date := time.Date(2020, 12, 28, 7, 23, 45, 0, time.UTC)
 	tag1, tag2 := adoc.Tag("tag1"), adoc.Tag("tag2")
 	par1 := adoc.Paragraph{adoc.PlainText("one")}
 	par2 := adoc.Paragraph{adoc.PlainText("two")}
-	post := site.NewPost(&adoc.ADoc{
+	post := site.NewPost(config, &adoc.ADoc{
 		Title:    title,
 		Author:   author,
-		Kind:     kind,
+		Kind:     docKind,
 		Language: language,
 		Path:     path,
 		Date:     date,
@@ -32,7 +38,7 @@ func TestPost(t *testing.T) {
 
 	t.Run("new", func(t *testing.T) {
 		test.Equals(t, date, post.Date)
-		test.Equals(t, site.Kind(kind), post.Kind)
+		test.Equals(t, siteKind, post.Kind)
 		test.Equals(t, site.Language(language), post.Language)
 		test.Equals(t, []site.Tag{site.Tag(tag1), site.Tag(tag2)}, post.Tags)
 	})
