@@ -53,6 +53,11 @@ func TestNewKind(t *testing.T) {
 			exp:   adoc.KIND_TUTORIAL,
 		},
 		{
+			name:  "article",
+			input: "article",
+			exp:   adoc.KIND_ARTICLE,
+		},
+		{
 			name:  "work note",
 			input: "work",
 			exp:   adoc.KIND_WORK,

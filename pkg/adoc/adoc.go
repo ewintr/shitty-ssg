@@ -12,6 +12,7 @@ const (
 	KIND_SNIPPET  = Kind("snippet")
 	KIND_ESSAY    = Kind("essay")
 	KIND_WORK     = Kind("work")
+	KIND_ARTICLE  = Kind("article")
 	KIND_TUTORIAL = Kind("tutorial")
 	KIND_UNKNOWN  = Kind("unknown")
 )
@@ -28,7 +29,7 @@ func NewKind(text string) Kind {
 
 	for _, k := range []string{
 		"note", "vkv", "story", "snippet",
-		"essay", "tutorial", "work",
+		"essay", "tutorial", "work", "article",
 	} {
 		if k == text {
 			return Kind(k)

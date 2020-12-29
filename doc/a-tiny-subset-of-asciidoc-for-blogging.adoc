@@ -1,7 +1,7 @@
 = A Tiny Subset of Asciidoc for Blogging
 Erik Winter <ik@erikwinter.nl>
 2020-12-01
-:kind: article
+:kind: essay
 :tags: asciidoc
 :project: shitty-ssg
 :language: EN

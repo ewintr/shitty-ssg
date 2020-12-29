@@ -21,6 +21,8 @@ func NewKind(kind adoc.Kind) Kind {
 		return KIND_STORY
 	case adoc.KIND_ESSAY:
 		fallthrough
+	case adoc.KIND_ARTICLE:
+		fallthrough
 	case adoc.KIND_TUTORIAL:
 		return KIND_ARTICLE
 	default:

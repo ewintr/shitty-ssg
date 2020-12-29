@@ -55,11 +55,6 @@ func (s *Site) AddFilePost(fPath string) error {
 	return nil
 }
 
-func (s *Site) AddFolderPost(kind Kind, fPath string) error {
-	// TODO implement
-	return nil
-}
-
 func (s *Site) RenderHTML(targetPath string) error {
 	posts := s.posts.Sort()
 
