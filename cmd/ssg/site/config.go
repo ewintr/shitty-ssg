@@ -54,15 +54,15 @@ func NewSiteConfig(id SiteID) (*SiteConfig, error) {
 
 func (sc *SiteConfig) ParseTemplates(tplPath string) error {
 	for _, tplConf := range sc.TemplateConfigs {
+		var tFiles []string
 		for _, tName := range tplConf.TemplateNames {
-			var tFiles []string
 			tFiles = append(tFiles, filepath.Join(tplPath, fmt.Sprintf("%s.%s", tName, tplConf.TemplateExt)))
-			tpl, err := template.ParseFiles(tFiles...)
-			if err != nil {
-				return err
-			}
-			tplConf.Template = tpl
 		}
+		tpl, err := template.ParseFiles(tFiles...)
+		if err != nil {
+			return err
+		}
+		tplConf.Template = tpl
 	}
 
 	return nil
