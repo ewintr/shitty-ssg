@@ -234,7 +234,7 @@ func renderRSS(targetPath string, tpl *template.Template, posts Posts, _ []*Stat
 	defer rssFile.Close()
 
 	var xmlPosts []*XMLPost
-	for _, p := range posts.Limit(10) {
+	for _, p := range posts.RemoveKind(KIND_NOTE).Limit(10) {
 		xmlPosts = append(xmlPosts, p.XMLPost())
 	}
 
