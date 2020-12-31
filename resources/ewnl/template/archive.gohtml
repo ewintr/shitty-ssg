@@ -6,7 +6,7 @@
   <main>
     <nav class="tagList">
     <h2>Tags</h2>
-    <p>These can refer to both articles and development notes. Well, technically they could refer to short stories too, but I have not yet felt the need to include Docker or Kubernetes in my fiction. It's a safe space, after all.</p>
+    <p>These can refer to both articles and development notes. Well, technically they could refer to short stories too, but I have not yet felt the need to include Docker or Kubernetes in my fiction. Fiction writing should be a safe space, after all.</p>
     <ul>
     {{- range .Tags -}}
       <li><a href="{{ .Link }}">#{{ .Name }}</a></li>
@@ -33,7 +33,7 @@
     </nav>
     <nav>
     <h2>Short Stories &#127475;&#127473;</h2>
-    <p>Over the course of years, I wrote a lot of short stories in a format that I called <em>Vrij Korte Verhalen</em>, VKV's for short, which could be translated as Rather Short Stories. Most of them are between 500 and 1000 words and all of them in Dutch.</p>
+    <p>Over the course of years, I wrote a lot of short stories in a format that I called <em>Vrij Korte Verhalen</em>, VKV's for short, which could be translated as Rather Short Stories. Most of them are between 500 and 1000 words and all of them in Dutch. They have their own site and RSS feed at <a href="https://vrijkorteverhalen.nl/">vrijkorteverhalen.nl</a></p>
     <ul>
     {{- range .StoryYears -}}
       <li><a href="{{ .Link }}">{{ .Name}}</a></li>
