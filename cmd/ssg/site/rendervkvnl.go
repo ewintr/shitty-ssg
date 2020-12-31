@@ -1,7 +1,6 @@
 package site
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 	"text/template"
@@ -38,9 +37,7 @@ func renderVKVNLPosts(targetPath string, tpl *template.Template, posts Posts, _ 
 		}
 		if i != last {
 			data.NextLink = posts[i-1].Link()
-			fmt.Printf("first %d, last %d, i %d\n", first, last, i)
 			if i == last+1 {
-				fmt.Println(data.Title)
 				data.NextLink = "/"
 			}
 			path = filepath.Join(targetPath, post.Year(), data.Slug)
