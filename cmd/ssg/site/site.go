@@ -2,10 +2,13 @@ package site
 
 import (
 	"io/ioutil"
+	"os"
 	"path/filepath"
 
 	"git.sr.ht/~ewintr/shitty-ssg/pkg/adoc"
 )
+
+const dirMode = os.ModeDir | 0755
 
 type StaticPage struct {
 	Name string
@@ -64,6 +67,26 @@ func (s *Site) RenderHTML(targetPath string) error {
 
 	for _, tplConf := range s.config.TemplateConfigs {
 		if err := tplConf.Render(targetPath, tplConf.Template, posts, s.staticPages); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func resetTarget(targetPath string) error {
+	if err := os.RemoveAll(targetPath); err != nil {
+		return err
+	}
+
+	return os.Mkdir(targetPath, dirMode)
+}
+
+func moveResources(targetPath, resourcesPath string) error {
+	for _, dir := range []string{"css", "font"} {
+		srcPath := filepath.Join(resourcesPath, dir)
+		destPath := filepath.Join(targetPath, dir)
+		if err := copyFiles(filepath.Join(srcPath, "*"), destPath); err != nil {
 			return err
 		}
 	}

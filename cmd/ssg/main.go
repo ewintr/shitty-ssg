@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"flag"
 	"io/ioutil"
 	"log"
@@ -12,6 +13,7 @@ import (
 )
 
 var (
+	siteName  = flag.String("site", "ewnl", "site id, either 'ewnl' or 'vkvnl'")
 	resources = flag.String("resources", "./resources", "folder with templates and other resources")
 	content   = flag.String("content", "./content,/projectx", "comma separated list of folders search for content")
 	statics   = flag.String("statics", "./statics", "folder with static content")
@@ -20,12 +22,22 @@ var (
 
 func main() {
 	flag.Parse()
-	if *resources == "" || *content == "" || *public == "" || *statics == "" {
+	if *siteName == "" || *resources == "" || *content == "" || *public == "" || *statics == "" {
 		log.Fatal("missing parameter")
 	}
 
+	var siteId site.SiteID
+	switch *siteName {
+	case "ewnl":
+		siteId = site.SITE_EWNL
+	case "vkvnl":
+		siteId = site.SITE_VKVNL
+	default:
+		log.Fatal(errors.New("unknown site"))
+	}
+
 	// initialize site
-	config, err := site.NewSiteConfig(site.SITE_EWNL)
+	config, err := site.NewSiteConfig(siteId)
 	if err != nil {
 		log.Fatal(err)
 	}

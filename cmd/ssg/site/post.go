@@ -24,11 +24,13 @@ var pluralKind = map[Kind]string{
 }
 
 type Post struct {
-	doc      *adoc.ADoc
-	Date     time.Time
-	Kind     Kind
-	Language Language
-	Tags     []Tag
+	doc        *adoc.ADoc
+	baseURL    string
+	prefixPath bool
+	Date       time.Time
+	Kind       Kind
+	Language   Language
+	Tags       []Tag
 }
 
 func NewPost(config *SiteConfig, doc *adoc.ADoc) *Post {
@@ -37,11 +39,13 @@ func NewPost(config *SiteConfig, doc *adoc.ADoc) *Post {
 		tags = append(tags, Tag(t))
 	}
 	return &Post{
-		doc:      doc,
-		Date:     doc.Date,
-		Kind:     config.MapKind(doc.Kind),
-		Language: Language(doc.Language),
-		Tags:     tags,
+		doc:        doc,
+		baseURL:    config.BaseURL,
+		prefixPath: config.PathsWithKind,
+		Date:       doc.Date,
+		Kind:       config.MapKind(doc.Kind),
+		Language:   Language(doc.Language),
+		Tags:       tags,
 	}
 }
 
@@ -54,11 +58,15 @@ func (p *Post) Year() string {
 }
 
 func (p *Post) Link() string {
-	return fmt.Sprintf("%s/", path.Join("/", pluralKind[p.Kind], p.Year(), p.Slug()))
+	link := "/"
+	if p.prefixPath {
+		link = path.Join(link, pluralKind[p.Kind])
+	}
+	return fmt.Sprintf("%s/", path.Join(link, p.Year(), p.Slug()))
 }
 
 func (p *Post) FullLink() string {
-	return fmt.Sprintf("https://erikwinter.nl%s", p.Link())
+	return fmt.Sprintf("%s%s", p.baseURL, p.Link())
 }
 
 func (p *Post) HTMLSummary() *HTMLSummary {

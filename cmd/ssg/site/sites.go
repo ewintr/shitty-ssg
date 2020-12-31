@@ -4,44 +4,45 @@ import "git.sr.ht/~ewintr/shitty-ssg/pkg/adoc"
 
 var (
 	SITE_CONFIG_EWNL = &SiteConfig{
-		ID:      SITE_EWNL,
-		BaseURL: "https://erikwinter.nl",
+		ID:            SITE_EWNL,
+		BaseURL:       "https://erikwinter.nl",
+		PathsWithKind: true,
 		TemplateConfigs: []*TemplateConfig{
 			{
 				Name:          "home",
 				TemplateNames: []string{"list", "head", "menu"},
 				TemplateExt:   "gohtml",
-				Render:        renderHome,
+				Render:        renderEWNLHome,
 			},
 			{
 				Name:          "listings",
 				TemplateNames: []string{"list", "head", "menu"},
 				TemplateExt:   "gohtml",
-				Render:        renderListings,
+				Render:        renderEWNLListings,
 			},
 			{
 				Name:          "archive",
 				TemplateNames: []string{"archive", "head", "menu"},
 				TemplateExt:   "gohtml",
-				Render:        renderArchive,
+				Render:        renderEWNLArchive,
 			},
 			{
 				Name:          "static",
 				TemplateNames: []string{"static", "head", "menu"},
 				TemplateExt:   "gohtml",
-				Render:        renderStaticPages,
+				Render:        renderEWNLStaticPages,
 			},
 			{
 				Name:          "posts",
 				TemplateNames: []string{"post", "head", "menu"},
 				TemplateExt:   "gohtml",
-				Render:        renderPosts,
+				Render:        renderEWNLPosts,
 			},
 			{
 				Name:          "rss",
 				TemplateNames: []string{"rss"},
 				TemplateExt:   "goxml",
-				Render:        renderRSS,
+				Render:        renderEWNLRSS,
 			},
 		},
 		KindMap: map[adoc.Kind]Kind{
@@ -52,5 +53,27 @@ var (
 			adoc.KIND_ARTICLE:  KIND_ARTICLE,
 		},
 	}
-	SITE_CONFIG_VKVNL = &SiteConfig{}
+
+	SITE_CONFIG_VKVNL = &SiteConfig{
+		ID:            SITE_VKVNL,
+		BaseURL:       "https://vrijkorteverhalen.nl",
+		PathsWithKind: false,
+		TemplateConfigs: []*TemplateConfig{
+			{
+				Name:          "post",
+				TemplateNames: []string{"post"},
+				TemplateExt:   "gohtml",
+				Render:        renderVKVNLPosts,
+			},
+			{
+				Name:          "rss",
+				TemplateNames: []string{"rss"},
+				TemplateExt:   "goxml",
+				Render:        renderVKVNLRSS,
+			},
+		},
+		KindMap: map[adoc.Kind]Kind{
+			adoc.KIND_VKV: KIND_STORY,
+		},
+	}
 )

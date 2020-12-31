@@ -31,8 +31,8 @@ type TemplateConfig struct {
 type SiteConfig struct {
 	ID              SiteID
 	BaseURL         string
+	PathsWithKind   bool
 	TemplateConfigs []*TemplateConfig
-	RSS             bool
 	StaticPages     []*StaticPage
 	KindMap         map[adoc.Kind]Kind
 }

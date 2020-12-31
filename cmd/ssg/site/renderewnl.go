@@ -11,29 +11,7 @@ import (
 	"time"
 )
 
-const dirMode = os.ModeDir | 0755
-
-func resetTarget(targetPath string) error {
-	if err := os.RemoveAll(targetPath); err != nil {
-		return err
-	}
-
-	return os.Mkdir(targetPath, dirMode)
-}
-
-func moveResources(targetPath, resourcesPath string) error {
-	for _, dir := range []string{"css", "font"} {
-		srcPath := filepath.Join(resourcesPath, dir)
-		destPath := filepath.Join(targetPath, dir)
-		if err := copyFiles(filepath.Join(srcPath, "*"), destPath); err != nil {
-			return err
-		}
-	}
-
-	return nil
-}
-
-func renderStaticPages(targetPath string, tpl *template.Template, _ Posts, statics []*StaticPage) error {
+func renderEWNLStaticPages(targetPath string, tpl *template.Template, _ Posts, statics []*StaticPage) error {
 	for _, static := range statics {
 		destPath := filepath.Join(targetPath, static.Name)
 		if err := os.MkdirAll(destPath, dirMode); err != nil {
@@ -68,7 +46,7 @@ func renderStaticPages(targetPath string, tpl *template.Template, _ Posts, stati
 	return nil
 }
 
-func renderHome(targetPath string, tpl *template.Template, posts Posts, _ []*StaticPage) error {
+func renderEWNLHome(targetPath string, tpl *template.Template, posts Posts, _ []*StaticPage) error {
 	var summaries []*HTMLSummary
 	for _, p := range posts.RemoveKind(KIND_NOTE).Limit(10) {
 		summaries = append(summaries, p.HTMLSummary())
@@ -91,7 +69,7 @@ func renderHome(targetPath string, tpl *template.Template, posts Posts, _ []*Sta
 	return tpl.Execute(homeFile, data)
 }
 
-func renderArchive(targetPath string, tpl *template.Template, posts Posts, _ []*StaticPage) error {
+func renderEWNLArchive(targetPath string, tpl *template.Template, posts Posts, _ []*StaticPage) error {
 	archPath := filepath.Join(targetPath, "archive")
 	if err := os.MkdirAll(archPath, dirMode); err != nil {
 		return err
@@ -145,7 +123,7 @@ func renderArchive(targetPath string, tpl *template.Template, posts Posts, _ []*
 	return tpl.Execute(archFile, data)
 }
 
-func renderListings(targetPath string, tpl *template.Template, posts Posts, _ []*StaticPage) error {
+func renderEWNLListings(targetPath string, tpl *template.Template, posts Posts, _ []*StaticPage) error {
 	for _, kind := range []Kind{KIND_NOTE, KIND_STORY, KIND_ARTICLE} {
 		for _, year := range posts.SelectKind(kind).YearList() {
 			title := fmt.Sprintf("%s in %s", strings.Title(pluralKind[kind]), year)
@@ -155,7 +133,7 @@ func renderListings(targetPath string, tpl *template.Template, posts Posts, _ []
 				summaries = append(summaries, p.HTMLSummary())
 			}
 			path := filepath.Join(targetPath, pluralKind[kind], year)
-			if err := renderListing(path, tpl, title, summaries); err != nil {
+			if err := renderEWNLListing(path, tpl, title, summaries); err != nil {
 				return err
 			}
 		}
@@ -169,7 +147,7 @@ func renderListings(targetPath string, tpl *template.Template, posts Posts, _ []
 			summaries = append(summaries, p.HTMLSummary())
 		}
 		path := filepath.Join(targetPath, "tags", tag)
-		if err := renderListing(path, tpl, title, summaries); err != nil {
+		if err := renderEWNLListing(path, tpl, title, summaries); err != nil {
 			return err
 		}
 	}
@@ -177,7 +155,7 @@ func renderListings(targetPath string, tpl *template.Template, posts Posts, _ []
 	return nil
 }
 
-func renderListing(path string, tpl *template.Template, title string, summaries []*HTMLSummary) error {
+func renderEWNLListing(path string, tpl *template.Template, title string, summaries []*HTMLSummary) error {
 	data := struct {
 		Title     string
 		Summaries []*HTMLSummary
@@ -198,7 +176,7 @@ func renderListing(path string, tpl *template.Template, title string, summaries 
 	return tpl.Execute(f, data)
 }
 
-func renderPosts(targetPath string, tpl *template.Template, posts Posts, _ []*StaticPage) error {
+func renderEWNLPosts(targetPath string, tpl *template.Template, posts Posts, _ []*StaticPage) error {
 	for _, post := range posts {
 		data := post.HTMLPost()
 		if data.Slug == "" {
@@ -225,7 +203,7 @@ func renderPosts(targetPath string, tpl *template.Template, posts Posts, _ []*St
 	return nil
 }
 
-func renderRSS(targetPath string, tpl *template.Template, posts Posts, _ []*StaticPage) error {
+func renderEWNLRSS(targetPath string, tpl *template.Template, posts Posts, _ []*StaticPage) error {
 	rssPath := filepath.Join(targetPath, "index.xml")
 	rssFile, err := os.Create(rssPath)
 	if err != nil {
