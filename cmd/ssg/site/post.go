@@ -64,7 +64,7 @@ func (p *Post) FullLink() string {
 func (p *Post) HTMLSummary() *HTMLSummary {
 	summary := ""
 	if len(p.doc.Content) > 0 {
-		summary = fmt.Sprintf("<p>%s...</p>", TruncateOnSpace(p.doc.Content[0].Text(), 150))
+		summary = fmt.Sprintf("<p>%s...</p>", TruncateOnSpace(p.doc.Content[0].Text(), 300))
 	}
 
 	return &HTMLSummary{
