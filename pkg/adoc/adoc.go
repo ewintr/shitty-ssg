@@ -6,15 +6,16 @@ import (
 )
 
 const (
-	KIND_NOTE     = Kind("note")
-	KIND_VKV      = Kind("vkv")
-	KIND_STORY    = Kind("story")
-	KIND_SNIPPET  = Kind("snippet")
-	KIND_ESSAY    = Kind("essay")
-	KIND_WORK     = Kind("work")
-	KIND_ARTICLE  = Kind("article")
-	KIND_TUTORIAL = Kind("tutorial")
-	KIND_UNKNOWN  = Kind("unknown")
+	KIND_NOTE         = Kind("note")
+	KIND_PRIVATE_NOTE = Kind("private_note")
+	KIND_WORK_NOTE    = Kind("work_note")
+	KIND_VKV          = Kind("vkv")
+	KIND_STORY        = Kind("story")
+	KIND_SNIPPET      = Kind("snippet")
+	KIND_ESSAY        = Kind("essay")
+	KIND_ARTICLE      = Kind("article")
+	KIND_TUTORIAL     = Kind("tutorial")
+	KIND_UNKNOWN      = Kind("unknown")
 )
 
 type Kind string
@@ -28,7 +29,8 @@ func NewKind(text string) Kind {
 	}
 
 	for _, k := range []string{
-		"note", "vkv", "story", "snippet",
+		"note", "private_note", "work_note", "vkv",
+		"story", "snippet",
 		"essay", "tutorial", "work", "article",
 	} {
 		if k == text {
