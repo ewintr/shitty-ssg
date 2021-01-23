@@ -26,7 +26,7 @@ func TestFormatBlock(t *testing.T) {
 		{
 			name:    "subtitle",
 			element: adoc.SubTitle("text"),
-			exp:     "<h2>text</h2>",
+			exp:     `<h2 id="text">text</h2>`,
 		},
 		{
 			name:    "subsubtitle",

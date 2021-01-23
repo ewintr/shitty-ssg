@@ -5,6 +5,7 @@ import (
 	"html"
 	"strings"
 
+	"git.sr.ht/~ewintr/go-kit/slugify"
 	"git.sr.ht/~ewintr/shitty-ssg/pkg/adoc"
 )
 
@@ -34,7 +35,7 @@ func FormatBlock(block adoc.BlockElement) string {
 		}
 		return fmt.Sprintf("<p>%s</p>", text)
 	case adoc.SubTitle:
-		return fmt.Sprintf("<h2>%s</h2>", html.EscapeString(block.Text()))
+		return fmt.Sprintf("<h2 id=%q>%s</h2>", slugify.Slugify(block.Text()), html.EscapeString(block.Text()))
 	case adoc.SubSubTitle:
 		return fmt.Sprintf("<h3>%s</h3>", html.EscapeString(block.Text()))
 	case adoc.CodeBlock:

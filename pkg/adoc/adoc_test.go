@@ -57,11 +57,6 @@ func TestNewKind(t *testing.T) {
 			input: "article",
 			exp:   adoc.KIND_ARTICLE,
 		},
-		{
-			name:  "work note",
-			input: "work",
-			exp:   adoc.KIND_WORK,
-		},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			act := adoc.NewKind(tc.input)

@@ -13,9 +13,11 @@ func TestPost(t *testing.T) {
 	docKind := adoc.KIND_NOTE
 	siteKind := site.Kind(docKind)
 	config := &site.SiteConfig{
+		BaseURL: "base_url",
 		KindMap: map[adoc.Kind]site.Kind{
 			docKind: siteKind,
 		},
+		PathsWithKind: true,
 	}
 	title := "title thing"
 	author := "author"
@@ -60,7 +62,7 @@ func TestPost(t *testing.T) {
 	})
 
 	t.Run("full link", func(t *testing.T) {
-		test.Equals(t, "https://erikwinter.nl/notes/2020/title-thing/", post.FullLink())
+		test.Equals(t, "base_url/notes/2020/title-thing/", post.FullLink())
 	})
 
 	t.Run("html summary", func(t *testing.T) {
@@ -90,7 +92,7 @@ func TestPost(t *testing.T) {
 
 	t.Run("xml post", func(t *testing.T) {
 		exp := &site.XMLPost{
-			Link:       "https://erikwinter.nl/notes/2020/title-thing/",
+			Link:       "base_url/notes/2020/title-thing/",
 			Title:      "title thing",
 			DateFormal: "Mon, 28 Dec 2020 07:23:45 +0000",
 			Content:    "<p>one</p>\n<p>two</p>\n",
