@@ -1,6 +1,6 @@
 = Shitty SSG: Code Walkthrough
 Erik Winter <ik@erikwinter.nl>
-2021-02-10
+2021-03-09
 :kind: article
 :tags: golang, asciidoc
 :project: shitty-ssg
