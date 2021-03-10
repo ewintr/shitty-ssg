@@ -66,15 +66,15 @@ type TemplateConfig struct {
 }
 ----
 
-This takes a template, the big `Posts` collection and a target path. The collection is filtered, sorted, etc. in the render function and is then fed to the template. The template get rendered to the target path.
+This takes a go text template, the big `Posts` collection and a target path. The collection is filtered, sorted, etc. in the render function and is then fed to the template. The template get rendered to the target path.
 
 So what happens is:
 
 * At startup, the content folders get scanned for parsable Asciidoc files.
-* These parsed documents are put in one big collections of `Posts`.
+* These parsed documents are put in one big collection of `Posts`.
 * Each site has its own list of render functions, that are called one by one with the `Posts`.
 * The render function renders a portion of the site and stores it at the target path.
 
-The `[]*StaticPages` work similar. These are the content parts that are not a post, but still are specific to the site. For instance, the Other and About pages on https://erikwinter.nl[erikwinter.nl]. The HTML for that is just stored in a separate folder that is read at startup. 
+The `StaticPages` work similar. These are the content parts that are not a post, but still are specific to the site. For instance, the Other and About pages on https://erikwinter.nl[erikwinter.nl]. The HTML for that is just stored in a separate folder that is read at startup. 
 
 And that is enough. I haven’t looked back since.
