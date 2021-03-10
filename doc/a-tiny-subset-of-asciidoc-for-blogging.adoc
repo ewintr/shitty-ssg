@@ -16,6 +16,8 @@ In order to achieve that, I selected the following parts from the Asciidoc speci
 
 Everything that is not described below will not work. I may add new stuff in the future, if I feel it is needed. If I do so, I will update this page.
 
+The https://erikwinter.nl/articles/2021/shitty-ssg-code-walkthrough/[code walkthrough] of the SSG contains a short description of how the parser works.
+
 == Header
 
 A header consists of the title of the post and various fields of metadata. It looks like this: 
