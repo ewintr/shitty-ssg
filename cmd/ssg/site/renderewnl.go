@@ -48,7 +48,7 @@ func renderEWNLStaticPages(targetPath string, tpl *template.Template, _ Posts, s
 
 func renderEWNLHome(targetPath string, tpl *template.Template, posts Posts, _ []*StaticPage) error {
 	var summaries []*HTMLSummary
-	for _, p := range posts.RemoveKind(KIND_NOTE).Limit(10) {
+	for _, p := range posts.Limit(10) {
 		summaries = append(summaries, p.HTMLSummary())
 	}
 	data := struct {
@@ -212,7 +212,7 @@ func renderEWNLRSS(targetPath string, tpl *template.Template, posts Posts, _ []*
 	defer rssFile.Close()
 
 	var xmlPosts []*XMLPost
-	for _, p := range posts.RemoveKind(KIND_NOTE).Limit(10) {
+	for _, p := range posts.Limit(10) {
 		xmlPosts = append(xmlPosts, p.XMLPost())
 	}
 
