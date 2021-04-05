@@ -53,27 +53,4 @@ var (
 			adoc.KIND_ARTICLE:  KIND_ARTICLE,
 		},
 	}
-
-	SITE_CONFIG_VKVNL = &SiteConfig{
-		ID:            SITE_VKVNL,
-		BaseURL:       "https://vrijkorteverhalen.nl",
-		PathsWithKind: false,
-		TemplateConfigs: []*TemplateConfig{
-			{
-				Name:          "post",
-				TemplateNames: []string{"post"},
-				TemplateExt:   "gohtml",
-				Render:        renderVKVNLPosts,
-			},
-			{
-				Name:          "rss",
-				TemplateNames: []string{"rss"},
-				TemplateExt:   "goxml",
-				Render:        renderVKVNLRSS,
-			},
-		},
-		KindMap: map[adoc.Kind]Kind{
-			adoc.KIND_VKV: KIND_STORY,
-		},
-	}
 )

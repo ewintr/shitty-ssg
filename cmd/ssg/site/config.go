@@ -16,8 +16,7 @@ var (
 type SiteID string
 
 const (
-	SITE_EWNL  = SiteID("ewnl")
-	SITE_VKVNL = SiteID("vkvnl")
+	SITE_EWNL = SiteID("ewnl")
 )
 
 type TemplateConfig struct {
@@ -43,8 +42,6 @@ func NewSiteConfig(id SiteID) (*SiteConfig, error) {
 	switch id {
 	case SITE_EWNL:
 		config = SITE_CONFIG_EWNL
-	case SITE_VKVNL:
-		config = SITE_CONFIG_VKVNL
 	default:
 		return &SiteConfig{}, ErrUnknownSiteID
 	}
