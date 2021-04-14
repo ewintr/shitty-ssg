@@ -39,11 +39,12 @@ func TestNew(t *testing.T) {
 		},
 		{
 			name:  "header",
-			input: "= Title\nT. Test\n2020-10-27\n:tags:\ttag1, tag2\n:kind:\tnote\n:language:\tnl",
+			input: "= Title\nT. Test\n2020-10-27\n:tags:\ttag1, tag2\n:kind:\tnote\n:language:\tnl\n:public: yes",
 			exp: &adoc.ADoc{
 				Title:    "Title",
 				Author:   "T. Test",
 				Kind:     adoc.KIND_NOTE,
+				Public:   true,
 				Language: adoc.LANGUAGE_NL,
 				Tags: []adoc.Tag{
 					adoc.Tag("tag1"),

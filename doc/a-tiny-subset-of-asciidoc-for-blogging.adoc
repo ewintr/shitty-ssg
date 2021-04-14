@@ -2,6 +2,7 @@
 Erik Winter <ik@erikwinter.nl>
 2020-12-01
 :kind: essay
+:public: yes
 :tags: asciidoc
 :project: shitty-ssg
 :language: EN
@@ -27,6 +28,7 @@ A header consists of the title of the post and various fields of metadata. It lo
 Erik Winter <info@erikwinter.nl>
 2020-12-01
 :kind: note
+:public: yes
 :language: EN
 :project: shitty-ssg
 :tags: asciidoc, ssg, parser
@@ -38,6 +40,7 @@ It starts with the title on the first line, which is prefixed with `=`, and it e
 A the attributes of a post are defined as a key-value pair. Each pair gets its own line. The following attributes are supported:
 
 * `kind` The type of post. Either `note`, `story` or `article`.
+* `public` Can be exported to sites/systems that other people see. Values are `true`/`yes`, `false`/`no`. Defaults to `false`.
 * `language` A two letter country code. Only `NL` will have a visible effect, by showing the Dutch flag in various places.
 * `project` Posts that belong to a personal project.
 * `tags` A comma separated list of tags.

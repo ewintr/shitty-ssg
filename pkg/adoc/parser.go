@@ -128,6 +128,12 @@ func ParseHeader(text string, doc *ADoc) {
 		case strings.HasPrefix(l, ":language:"):
 			s := strings.Split(l, ":")
 			doc.Language = NewLanguage(strings.TrimSpace(s[2]))
+		case strings.HasPrefix(l, ":public:"):
+			s := strings.Split(l, ":")
+			val := strings.TrimSpace(s[2])
+			if val == "yes" || val == "true" {
+				doc.Public = true
+			}
 		case strings.HasPrefix(l, ":tags:"):
 			s := strings.Split(l, ":")
 			t := strings.Split(s[2], ",")

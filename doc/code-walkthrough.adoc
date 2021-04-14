@@ -2,6 +2,7 @@
 Erik Winter <ik@erikwinter.nl>
 2021-03-09
 :kind: article
+:public: yes
 :tags: golang, asciidoc
 :project: shitty-ssg
 :language: en

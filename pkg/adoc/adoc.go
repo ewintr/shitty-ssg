@@ -67,6 +67,7 @@ type ADoc struct {
 	Author   string
 	Kind     Kind
 	Language Language
+	Public   bool
 	Path     string
 	Date     time.Time
 	Tags     []Tag
