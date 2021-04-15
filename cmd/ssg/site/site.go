@@ -47,7 +47,12 @@ func (s *Site) AddFilePost(fPath string) error {
 	if err != nil {
 		return err
 	}
-	post := NewPost(s.config, adoc.New(string(content)))
+	doc := adoc.New(string(content))
+	if !doc.Public {
+		return nil
+	}
+
+	post := NewPost(s.config, doc)
 	if post.Kind != KIND_INVALID {
 		s.posts = append(s.posts, post)
 	}
