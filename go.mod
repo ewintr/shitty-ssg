@@ -1,6 +1,6 @@
-module git.sr.ht/~ewintr/shitty-ssg
+module ewintr.nl/shitty-ssg
 
-go 1.14
+go 1.16
 
 require (
 	git.sr.ht/~ewintr/erikwinternl/shitty-ssg v0.0.0-20201204092507-5528bf33815d // indirect
