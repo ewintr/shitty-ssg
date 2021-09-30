@@ -1,0 +1,128 @@
+= A Tiny Subset of Asciidoc for Blogging
+Erik Winter <ik@erikwinter.nl>
+2020-12-01
+:kind: essay
+:public: yes
+:tags: asciidoc
+:project: shitty-ssg
+:language: EN
+
+As promised in /articles/2020/why-i-built-my-own-shitty-static-site-generator/[my earlier post] on why I decided to build my own Shitty Static Site Generator, I’ll explain the markup format that I use for the posts on this site. The goal was to find a subset of Asciidoc that would be easy to parse myself, but would still result in valid documents, so that they can be processed by all other tools that understand Asciidoc without any problem. For instance, I wanted the syntax coloring in my editor to ‘just work’.
+
+In order to achieve that, I selected the following parts from the Asciidoc specification. They are categorized by the types of elements as they are used in a HTML page:
+
+* A header
+* Block elements
+* Inline elements
+
+Everything that is not described below will not work. I may add new stuff in the future, if I feel it is needed. If I do so, I will update this page.
+
+The https://erikwinter.nl/articles/2021/shitty-ssg-code-walkthrough/[code walkthrough] of the SSG contains a short description of how the parser works.
+
+== Header
+
+A header consists of the title of the post and various fields of metadata. It looks like this: 
+
+----
+= An Example Post
+Erik Winter <info@erikwinter.nl>
+2020-12-01
+:kind: note
+:public: yes
+:language: EN
+:project: shitty-ssg
+:tags: asciidoc, ssg, parser
+​
+----
+
+It starts with the title on the first line, which is prefixed with `=`, and it ends with an empty line.
+
+A the attributes of a post are defined as a key-value pair. Each pair gets its own line. The following attributes are supported:
+
+* `kind` The type of post. Either `note`, `story` or `article`.
+* `public` Can be exported to sites/systems that other people see. Values are `true`/`yes`, `false`/`no`. Defaults to `false`.
+* `language` A two letter country code. Only `NL` will have a visible effect, by showing the Dutch flag in various places.
+* `project` Posts that belong to a personal project.
+* `tags` A comma separated list of tags.
+
+Author and publishing date are the only two lines that don’t start with a semicolon. If the line has the format `YYYY-MM-DD` it is assumed to be the publishing date, the rest is considered the author. That last value is not used on this site, but useful for other tools.
+
+Lines that are not recognized are ignored. Later lines overwrite previous ones if they define the same thing.
+
+== Block Elements
+
+A post constist of multiple blocks that are separated by a blank line. Currently the following blocks are supported:
+
+* Subtitle and Subsubtitle
+* List
+* Code block
+* Paragraph
+
+=== Subtitle and Subsubtitle
+
+----
+== A Subtitle
+----
+
+Start with a `==`, or a `===`, followed by a space. They translate to `<h2>` and `<h3>` elements.
+
+=== List
+
+----
+* List item one
+* List item two
+* List item three
+----
+
+Lists items start with an asterisk and are not separated by a blank line. The text of the item is parsed as a paragraph.
+
+=== Code Block
+
+----
+​----
+func (d *Dummy) DoSomething() string {
+  return “No. I don’t want to.”
+}
+
+func (d *Dummy) SudoDoSomething() string {
+  return “Ok. If you insist, I’ll put my objections aside for a moment.”
+}
+​----
+----
+
+Code blocks start and end width four dashes on an empty line. The text between is put in `<code>` tags and result in monospaced font with whitespace preserved. Empty lines are allowed. 
+
+=== Paragraph
+
+A paragraph is a line of text that gets parsed to find inline elements.
+
+== Inline Elements
+
+Currently the following types are recognized:
+
+* Strong and emphasis
+* Link
+* Inline code
+
+=== Strong and Emphasis
+
+----
+a text with some *strong* words, that I’d like to _emphasize_.
+----
+
+It is possible to combine the two for the same text.
+
+=== Link
+
+----
+Check out this https://erikwinter.nl/[awesome website] now! 
+----
+
+Whatever is between the opening bracket and the first space before that is taken as URL, so both absolute and relative links without domain are possible.
+
+=== Inline Code
+
+----
+Some text with `code` in it.
+----
+
