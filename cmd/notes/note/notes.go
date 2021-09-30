@@ -3,7 +3,7 @@ package note
 import (
 	"io/ioutil"
 
-	"git.sr.ht/~ewintr/shitty-ssg/pkg/adoc"
+	"ewintr.nl/shitty-ssg/pkg/adoc"
 )
 
 type Notes []*Note

@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"text/template"
 
-	"git.sr.ht/~ewintr/shitty-ssg/pkg/adoc"
+	"ewintr.nl/shitty-ssg/pkg/adoc"
 )
 
 var (

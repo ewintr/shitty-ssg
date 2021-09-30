@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"git.sr.ht/~ewintr/go-kit/slugify"
-	"git.sr.ht/~ewintr/shitty-ssg/pkg/adoc"
+	"ewintr.nl/go-kit/slugify"
+	"ewintr.nl/shitty-ssg/pkg/adoc"
 )
 
 var (

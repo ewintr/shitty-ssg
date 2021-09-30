@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"git.sr.ht/~ewintr/shitty-ssg/cmd/ssg/site"
+	"ewintr.nl/shitty-ssg/cmd/ssg/site"
 )
 
 var (

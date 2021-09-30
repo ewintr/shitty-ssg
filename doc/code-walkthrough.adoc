@@ -17,7 +17,7 @@ Originally I made the SSG to create one site. But it turned out to be not that h
 
 In the future I might add an export for a Gopher or a Gemini site and if the collection of notes grows I’ll probably improve the search somewhat. Now it only finds notes on tags or whole words. It displays them just in plain text. I will also probably dive more into shell escape codes and such to see if the apperance can be improved. 
 
-The code itself can be found https://git.sr.ht/~ewintr/shitty-ssg[here].
+The code itself can be found https://ewintr.nl/shitty-ssg[here].
 
 == Directories
 
