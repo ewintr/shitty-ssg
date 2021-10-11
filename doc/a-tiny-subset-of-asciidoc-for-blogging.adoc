@@ -3,7 +3,7 @@ Erik Winter <ik@erikwinter.nl>
 2020-12-01
 :kind: essay
 :public: yes
-:tags: asciidoc
+:tags: asciidoc, shitty-ssg
 :project: shitty-ssg
 :language: EN
 

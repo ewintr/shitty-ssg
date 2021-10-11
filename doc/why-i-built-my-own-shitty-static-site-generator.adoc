@@ -3,7 +3,7 @@ Erik Winter
 2020-11-09
 :kind: article
 :public: yes
-:tags: productivity, asciidoc, hugo
+:tags: productivity, asciidoc, hugo, shitty-ssg
 :language: EN
 :project: shitty-ssg
 
