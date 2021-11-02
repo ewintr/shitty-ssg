@@ -1,11 +1,6 @@
 = Shitty SSG: Code Walkthrough
-Erik Winter <ik@erikwinter.nl>
 2021-03-09
-:kind: article
-:public: yes
-:tags: golang, asciidoc, shitty-ssg
-:project: shitty-ssg
-:language: en
+:tags: go, asciidoc, public, en
 
 One would expect a walk through the code of a self proclaimed “shitty” software project not to be a pleasant read. I promise that it is not that bad. Earlier I https://erikwinter.nl/articles/2020/why-i-built-my-own-shitty-static-site-generator/[described] why I built this static site generator and the https://erikwinter.nl/articles/2020/a-tiny-subset-of-asciidoc-for-blogging/[Asciidoc subset] that it uses as a markup language. Here I will describe the code that transforms these documents into a website. Later I will go more into detail on how the flexibility of this generator is used to create and publish to multiple sites from multiple sources in one go.
 

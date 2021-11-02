@@ -1,11 +1,6 @@
 = Why I Built My Own Shitty Static Site Generator
-Erik Winter
 2020-11-09
-:kind: article
-:public: yes
-:tags: productivity, asciidoc, hugo, shitty-ssg
-:language: EN
-:project: shitty-ssg
+:tags: productivity, asciidoc, hugo, public, en
 
 _NOTE: This post generated some interesting discussions elsewhere. See the comments on https://news.ycombinator.com/item?id=25227181[hackernews] and https://old.reddit.com/r/programming/comments/k05oy9/[reddit] to read more opinions on the subject._
 

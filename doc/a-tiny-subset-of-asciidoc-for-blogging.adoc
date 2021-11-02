@@ -1,11 +1,6 @@
 = A Tiny Subset of Asciidoc for Blogging
-Erik Winter <ik@erikwinter.nl>
 2020-12-01
-:kind: essay
-:public: yes
-:tags: asciidoc, shitty-ssg
-:project: shitty-ssg
-:language: EN
+:tags: asciidoc, shitty-ssg, public, en
 
 As promised in /articles/2020/why-i-built-my-own-shitty-static-site-generator/[my earlier post] on why I decided to build my own Shitty Static Site Generator, I’ll explain the markup format that I use for the posts on this site. The goal was to find a subset of Asciidoc that would be easy to parse myself, but would still result in valid documents, so that they can be processed by all other tools that understand Asciidoc without any problem. For instance, I wanted the syntax coloring in my editor to ‘just work’.
 
