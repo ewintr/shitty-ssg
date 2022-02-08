@@ -3,8 +3,6 @@
 :updated: 2020-12-06
 :tags: productivity, asciidoc, hugo, public, en
 
-_NOTE: This post generated some interesting discussions elsewhere. See the comments on https://news.ycombinator.com/item?id=25227181[hackernews] and https://old.reddit.com/r/programming/comments/k05oy9/[reddit] to read more opinions on the subject._
-
 On the internet, there is no shortage of good quality https://jamstack.org/generators/[static site generators] (SSG’s) that you can download for free. https://gohugo.io/[Hugo], https://jekyllrb.com/[Jekyll], and hundreds of others are readily available. And they work. You can build all kinds of sites with them. I know that, because I’ve used some of them. Hugo was the driving force behind this website until very recently. Despite that, when I tried to add a new section a while ago, I got rather frustrated with it and decided to build my own generator. It turned out to be a very pleasant experience and not just because I like to program things. 
 
 While working on it, I discovered some of the deeper motivations that drove me to undertake this project. On the surface it would seem an odd thing to do, because it takes a lot of time and it appears to offer little benefit. I did not create any new or spectacular functionality. If you click around this site and think: Hey, but I could totally make this with <SSG of choice>, then you would probably be right. But that is not the point. There are certain advantages to making it all yourself and I suspect that these advantages trancend the subject of SSG’s and programming. My speculation is that exploring this direction might also be interesting for people who do not like to program, or maybe even for those who don’t like computers that much at all.
