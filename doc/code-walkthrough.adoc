@@ -2,17 +2,19 @@
 2021-03-09
 :tags: go, asciidoc, public, en
 
-One would expect a walk through the code of a self proclaimed “shitty” software project not to be a pleasant read. I promise that it is not that bad. Earlier I https://erikwinter.nl/articles/2020/why-i-built-my-own-shitty-static-site-generator/[described] why I built this static site generator and the https://erikwinter.nl/articles/2020/a-tiny-subset-of-asciidoc-for-blogging/[Asciidoc subset] that it uses as a markup language. Here I will describe the code that transforms these documents into a website. Later I will go more into detail on how the flexibility of this generator is used to create and publish to multiple sites from multiple sources in one go.
+One would expect a walk through the code of a self proclaimed “shitty” software project not to be a pleasant read. I promise that it is not that bad. Earlier I https://ewintr.nl/shitty-ssg/why-i-built-my-own-shitty-static-site-generator/[described] why I built this static site generator and the https://ewintr.nl/shitty-ssg/a-tiny-subset-of-asciidoc-for-blogging/[Asciidoc subset] that it uses as a markup language. Here I will describe the code that transforms these documents into a website. Later I will go more into detail on how the flexibility of this generator is used to create and publish to multiple sites from multiple sources in one go.
 
 Originally I made the SSG to create one site. But it turned out to be not that hard to generalize it and now it generates:
 
 * My personal site: https://erikwinter.nl[https://erikwinter.nl]
-* A second site with just the Dutch short stories: https://vrijkorteverhalen.nl _edit: I’ve decomissioned that site._
+* A second site with just the Dutch short stories: https://vrijkorteverhalen.nl 
 * A very basic note viewer for the terminal. As it felt weird to fire up a browser and go on the internet, just to view a note that was already sitting on my hard drive a few directories away.
+
+_Edit: I’ve changed some things since then, the links above might not work anymore._
 
 In the future I might add an export for a Gopher or a Gemini site and if the collection of notes grows I’ll probably improve the search somewhat. Now it only finds notes on tags or whole words. It displays them just in plain text. I will also probably dive more into shell escape codes and such to see if the apperance can be improved. 
 
-The code itself can be found https://ewintr.nl/shitty-ssg[here].
+The code itself can be found https://git.ewintr.nl/shitty-ssg[here].
 
 == Directories
 
@@ -27,7 +29,7 @@ So how does it work? On a very high level, the directory structure looks like th
     └── adoc
 ----
 
-I arrived there by following https://erikwinter.nl/notes/2021/my-default-golang-directory-structure/[the conventions for folders] I always follow when starting a new Go program. In this case there are two binaries. One is the notes program, the other the site generator. That one generator can generate both sites, depending on the configuration its fed.
+I arrived there by following https://ewintr.nl/devnotes/2021/my-default-go-directory-structure/[the conventions for folders] I always follow when starting a new Go program. In this case there are two binaries. One is the notes program, the other the site generator. That one generator can generate both sites, depending on the configuration its fed.
 
 Everything is built on the `adoc` package, that parses Asciidoc files in the most clumsy way possible. You give it a string, it gives you back a pointer to an `ADoc` struct that holds all information found in the string.
 
