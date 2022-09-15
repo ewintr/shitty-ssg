@@ -6,15 +6,15 @@ One would expect a walk through the code of a self proclaimed “shitty” softw
 
 Originally I made the SSG to create one site. But it turned out to be not that hard to generalize it and now it generates:
 
-* My personal site: https://erikwinter.nl[https://erikwinter.nl]
+* My personal site: https://erikwinter.nl
 * A second site with just the Dutch short stories: https://vrijkorteverhalen.nl 
 * A very basic note viewer for the terminal. As it felt weird to fire up a browser and go on the internet, just to view a note that was already sitting on my hard drive a few directories away.
 
-_Edit: I’ve changed some things since then, the links above might not work anymore._
+_Edit: I’ve changed some things since then, the domains above might not work anymore._
 
 In the future I might add an export for a Gopher or a Gemini site and if the collection of notes grows I’ll probably improve the search somewhat. Now it only finds notes on tags or whole words. It displays them just in plain text. I will also probably dive more into shell escape codes and such to see if the apperance can be improved. 
 
-The code itself can be found https://git.ewintr.nl/shitty-ssg[here].
+The code itself can be found https://codeberg.org/ewintr/shitty-ssg[here].
 
 == Directories
 
