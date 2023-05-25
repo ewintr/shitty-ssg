@@ -5,3 +5,4 @@ Although there are many SSG's out there that work perfectly fine, I still went t
 But, one of the points to do it was to have the freedom to put my content anywhere I want. So I was able to bundle everything together and you can find de source files out of which the mentioned posts are generated right in this repository, in de `doc` folder.
 
 As noted in the project name, this software is shitty. Don't use it. I put it here for inspiration and for educational purposes.
+
