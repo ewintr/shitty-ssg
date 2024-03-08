@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"ewintr.nl/shitty-ssg/pkg/adoc"
+	"code.ewintr.nl/shitty-ssg/pkg/adoc"
 )
 
 const dirMode = os.ModeDir | 0755

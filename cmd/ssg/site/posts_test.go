@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	"ewintr.nl/go-kit/test"
-	"ewintr.nl/shitty-ssg/cmd/ssg/site"
+	"code.ewintr.nl/go-kit/test"
+	"code.ewintr.nl/shitty-ssg/cmd/ssg/site"
 )
 
 func TestPosts(t *testing.T) {

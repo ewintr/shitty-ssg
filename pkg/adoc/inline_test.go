@@ -3,8 +3,8 @@ package adoc_test
 import (
 	"testing"
 
-	"ewintr.nl/go-kit/test"
-	"ewintr.nl/shitty-ssg/pkg/adoc"
+	"code.ewintr.nl/go-kit/test"
+	"code.ewintr.nl/shitty-ssg/pkg/adoc"
 )
 
 func TestInlineSimple(t *testing.T) {

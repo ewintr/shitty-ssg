@@ -3,9 +3,9 @@ package site_test
 import (
 	"testing"
 
-	"ewintr.nl/go-kit/test"
-	"ewintr.nl/shitty-ssg/cmd/ssg/site"
-	"ewintr.nl/shitty-ssg/pkg/adoc"
+	"code.ewintr.nl/go-kit/test"
+	"code.ewintr.nl/shitty-ssg/cmd/ssg/site"
+	"code.ewintr.nl/shitty-ssg/pkg/adoc"
 )
 
 func TestFormatBlock(t *testing.T) {

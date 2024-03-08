@@ -1,7 +1,7 @@
 package site
 
 import (
-	"ewintr.nl/shitty-ssg/pkg/adoc"
+	"code.ewintr.nl/shitty-ssg/pkg/adoc"
 )
 
 const (

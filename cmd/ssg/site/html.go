@@ -5,8 +5,8 @@ import (
 	"html"
 	"strings"
 
-	"ewintr.nl/go-kit/slugify"
-	"ewintr.nl/shitty-ssg/pkg/adoc"
+	"code.ewintr.nl/go-kit/slugify"
+	"code.ewintr.nl/shitty-ssg/pkg/adoc"
 )
 
 type HTMLPost struct {

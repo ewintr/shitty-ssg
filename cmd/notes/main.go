@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strconv"
 
-	"ewintr.nl/shitty-ssg/cmd/notes/note"
+	"code.ewintr.nl/shitty-ssg/cmd/notes/note"
 )
 
 func main() {

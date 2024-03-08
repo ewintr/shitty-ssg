@@ -2,7 +2,7 @@
 2020-12-01
 :tags: asciidoc, shitty-ssg, public, en
 
-As promised in https://ewintr.nl/shitty-ssg/why-i-built-my-own-shitty-static-site-generator/[my earlier post] on why I decided to build my own Shitty Static Site Generator, I’ll explain the markup format that I use for the posts on this site. The goal was to find a subset of Asciidoc that would be easy to parse myself, but would still result in valid documents, so that they can be processed by all other tools that understand Asciidoc without any problem. For instance, I wanted the syntax coloring in my editor to ‘just work’.
+As promised in https://code.ewintr.nl/shitty-ssg/why-i-built-my-own-shitty-static-site-generator/[my earlier post] on why I decided to build my own Shitty Static Site Generator, I’ll explain the markup format that I use for the posts on this site. The goal was to find a subset of Asciidoc that would be easy to parse myself, but would still result in valid documents, so that they can be processed by all other tools that understand Asciidoc without any problem. For instance, I wanted the syntax coloring in my editor to ‘just work’.
 
 In order to achieve that, I selected the following parts from the Asciidoc specification. They are categorized by the types of elements as they are used in a HTML page:
 
@@ -12,7 +12,7 @@ In order to achieve that, I selected the following parts from the Asciidoc speci
 
 Everything that is not described below will not work. I may add new stuff in the future, if I feel it is needed. If I do so, I will update this page.
 
-The https://ewintr.nl/shitty-ssg/shitty-ssg-code-walkthrough/[code walkthrough] of the SSG contains a short description of how the parser works.
+The https://code.ewintr.nl/shitty-ssg/shitty-ssg-code-walkthrough/[code walkthrough] of the SSG contains a short description of how the parser works.
 
 == Header
 

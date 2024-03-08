@@ -3,7 +3,7 @@ package note
 import (
 	"strings"
 
-	"ewintr.nl/shitty-ssg/pkg/adoc"
+	"code.ewintr.nl/shitty-ssg/pkg/adoc"
 )
 
 type Kind string

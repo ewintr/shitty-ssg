@@ -2,7 +2,7 @@
 2021-03-09
 :tags: go, asciidoc, public, en
 
-One would expect a walk through the code of a self proclaimed “shitty” software project not to be a pleasant read. I promise that it is not that bad. Earlier I https://ewintr.nl/shitty-ssg/why-i-built-my-own-shitty-static-site-generator/[described] why I built this static site generator and the https://ewintr.nl/shitty-ssg/a-tiny-subset-of-asciidoc-for-blogging/[Asciidoc subset] that it uses as a markup language. Here I will describe the code that transforms these documents into a website. Later I will go more into detail on how the flexibility of this generator is used to create and publish to multiple sites from multiple sources in one go.
+One would expect a walk through the code of a self proclaimed “shitty” software project not to be a pleasant read. I promise that it is not that bad. Earlier I https://code.ewintr.nl/shitty-ssg/why-i-built-my-own-shitty-static-site-generator/[described] why I built this static site generator and the https://code.ewintr.nl/shitty-ssg/a-tiny-subset-of-asciidoc-for-blogging/[Asciidoc subset] that it uses as a markup language. Here I will describe the code that transforms these documents into a website. Later I will go more into detail on how the flexibility of this generator is used to create and publish to multiple sites from multiple sources in one go.
 
 Originally I made the SSG to create one site. But it turned out to be not that hard to generalize it and now it generates:
 
