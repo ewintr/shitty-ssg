@@ -1,6 +1,6 @@
 package site
 
-import "code.ewintr.nl/shitty-ssg/pkg/adoc"
+import "go-mod.ewintr.nl/shitty-ssg/pkg/adoc"
 
 var (
 	SITE_CONFIG_EWNL = &SiteConfig{

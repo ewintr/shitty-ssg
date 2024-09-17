@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"code.ewintr.nl/go-kit/test"
-	"code.ewintr.nl/shitty-ssg/pkg/adoc"
+	"go-mod.ewintr.nl/go-kit/test"
+	"go-mod.ewintr.nl/shitty-ssg/pkg/adoc"
 )
 
 func TestNew(t *testing.T) {

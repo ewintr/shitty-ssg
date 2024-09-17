@@ -2,7 +2,7 @@
 2021-03-09
 :tags: go, asciidoc, public, en
 
-One would expect a walk through the code of a self proclaimed “shitty” software project not to be a pleasant read. I promise that it is not that bad. Earlier I https://code.ewintr.nl/shitty-ssg/why-i-built-my-own-shitty-static-site-generator/[described] why I built this static site generator and the https://code.ewintr.nl/shitty-ssg/a-tiny-subset-of-asciidoc-for-blogging/[Asciidoc subset] that it uses as a markup language. Here I will describe the code that transforms these documents into a website. Later I will go more into detail on how the flexibility of this generator is used to create and publish to multiple sites from multiple sources in one go.
+One would expect a walk through the code of a self proclaimed “shitty” software project not to be a pleasant read. I promise that it is not that bad. Earlier I https://forgejo.ewintr.nl/shitty-ssg/why-i-built-my-own-shitty-static-site-generator/[described] why I built this static site generator and the https://forgejo.ewintr.nl/shitty-ssg/a-tiny-subset-of-asciidoc-for-blogging/[Asciidoc subset] that it uses as a markup language. Here I will describe the code that transforms these documents into a website. Later I will go more into detail on how the flexibility of this generator is used to create and publish to multiple sites from multiple sources in one go.
 
 Originally I made the SSG to create one site. But it turned out to be not that hard to generalize it and now it generates:
 
@@ -14,7 +14,7 @@ _Edit: I’ve changed some things since then, the domains above might not work a
 
 In the future I might add an export for a Gopher or a Gemini site and if the collection of notes grows I’ll probably improve the search somewhat. Now it only finds notes on tags or whole words. It displays them just in plain text. I will also probably dive more into shell escape codes and such to see if the apperance can be improved. 
 
-The code itself can be found https://codeberg.org/ewintr/shitty-ssg[here].
+The code itself can be found https://forgejo.ewintr.nl/ewintr/shitty-ssg[here].
 
 == Directories
 
